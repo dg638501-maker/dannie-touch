@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dannie Touch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bg: #fff3f8;
+  --surface: #ffffff;
+  --fg: #3a0a28;
+  --muted: #7d4a65;
+  --accent: #b0125f;
+  --accent-ink: #ffffff;
+  --accent-soft: #f9d3e5;
+  --line: #efc3d8;
+  --font-display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #240716; --surface: #341023; --fg: #ffe6f1; --muted: #d9a4bf;
+    --accent: #ff5fae; --accent-ink: #2a0618; --accent-soft: #4a1535; --line: #5b1f43;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #240716; --surface: #341023; --fg: #ffe6f1; --muted: #d9a4bf;
+  --accent: #ff5fae; --accent-ink: #2a0618; --accent-soft: #4a1535; --line: #5b1f43;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-inline: 1rem;
+  padding-block: 1rem 3rem;
+}
+.wrap { max-width: 46rem; margin-inline: auto; display: flex; flex-direction: column; gap: 2.5rem; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.hero {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: 1.5rem;
+  padding: 2rem 1.5rem 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.eyebrow { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; opacity: .9; margin: 0; }
+h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3.2rem, 17vw, 6.5rem);
+  line-height: .9;
+  letter-spacing: -.03em;
+  margin: 0;
+  text-wrap: balance;
+}
+h1 span { display: block; }
+.lede { font-size: 1.1rem; max-width: 30rem; margin: 0; text-wrap: pretty; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.btn {
+  display: inline-flex; align-items: center; min-height: 3rem; padding: 0 1.25rem;
+  border-radius: 999px; font-weight: 600; text-decoration: none; border: 2px solid currentColor;
+  font-family: inherit; font-size: 1rem; cursor: pointer; background: transparent; color: inherit;
+}
+.btn.solid { background: var(--accent-ink); color: var(--accent); border-color: var(--accent-ink); }
+.braid {
+  height: 3.25rem;
+  margin-inline: -1.5rem;
+  margin-top: .5rem;
+  background:
+    repeating-linear-gradient(60deg, transparent 0 .55rem, rgba(255,255,255,.28) .55rem .75rem),
+    repeating-linear-gradient(-60deg, transparent 0 .55rem, rgba(255,255,255,.28) .55rem .75rem),
+    rgba(0,0,0,.16);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.7rem, 6vw, 2.3rem);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  text-wrap: balance;
+}
+.menu { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--fg); }
+.menu li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .15rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.menu b { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; }
+.menu span { color: var(--muted); }
+@media (min-width: 36rem) {
+  .menu li { grid-template-columns: 14rem
