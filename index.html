@@ -1,13 +1,14 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dannie Touch</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&display=swap">
-<style>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dannie Touch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&amp;family=Figtree:wght@400;500;600&amp;display=swap">
+  <style>
+/* Layout: blush page, one bold magenta hero block with braid-stripe edge, service rows as a menu, visit card with copyable numbers. */
 :root {
   --bg: #fff3f8;
   --surface: #ffffff;
@@ -22,7 +23,7 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #240716; --surface: #341023; --fg: #ffe6f1; --muted: #d9a4bf;
+    --bg: #240716; --surface: #341023;--fg: #ffe6f1; --muted: #d9a4bf;
     --accent: #ff5fae; --accent-ink: #2a0618; --accent-soft: #4a1535; --line: #5b1f43;
     color-scheme: dark;
   }
@@ -107,4 +108,102 @@ h2 {
 .menu b { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; }
 .menu span { color: var(--muted); }
 @media (min-width: 36rem) {
-  .menu li { grid-template-columns: 14rem
+  .menu li { grid-template-columns: 14rem 1fr; align-items: baseline; gap: 1.5rem; }
+}
+
+.visit {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.visit h2 { margin: 0; }
+.place { margin: 0; font-size: 1.15rem; font-weight: 600; }
+.place small { display: block; font-weight: 400; color: var(--muted); font-size: .95rem; }
+.numbers { display: flex; flex-direction: column; gap: .75rem; }
+.num {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem;
+  background: var(--accent-soft); border-radius: .9rem; padding: .75rem 1rem;
+}
+.num code {
+  font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; letter-spacing: .02em;
+  font-variant-numeric: tabular-nums; user-select: all;
+}
+.copy {
+  min-height: 2.5rem; padding: 0 1rem; border-radius: 999px; border: 2px solid var(--accent);
+  background: transparent; color: var(--accent); font: inherit; font-weight: 600; cursor: pointer;
+}
+.copy[data-done="true"] { background: var(--accent); color: var(--accent-ink); }
+.wa { align-self: flex-start; background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+footer { color: var(--muted); font-size: .9rem; text-align: center; }
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .copy { transition: transform .15s ease; }
+  .btn:hover, .copy:hover { transform: translateY(-2px); }
+}
+</style>
+ </head>
+ <body>
+  <div class="wrap">
+   <header class="hero">
+    <p class="eyebrow">Hair &amp; beauty studio</p>
+    <h1><span>Dannie</span><span>Touch</span></h1>
+    <p class="lede">Braids, curls, barbing and installation in Barnersville. Walk in, call, or message to book your next look.</p>
+    <div class="actions">
+     <a class="btn solid" href="#visit">Call or visit</a> <a class="btn" href="#services">See services</a>
+    </div>
+    <div class="braid" aria-hidden="true"></div>
+   </header>
+   <main style="display:flex;flex-direction:column;gap:2.5rem">
+    <section id="services" aria-labelledby="s-h">
+     <h2 id="s-h">What we do</h2>
+     <ul class="menu">
+      <li><b>Braiding</b><span>Cornrows, ponytail braids and long styled braids for women.</span></li>
+      <li><b>Curls</b><span>Soft, defined curls and hair styling.</span></li>
+      <li><b>Hair barbing</b><span>Clean cuts, fades, waves and beard shape-ups for men.</span></li>
+      <li><b>Installation</b><span>Wig and hair installation, neatly finished.</span></li>
+     </ul>
+    </section>
+    <section id="visit" class="visit" aria-labelledby="v-h">
+     <h2 id="v-h">Find us</h2>
+     <p class="place">Barnersville Maryland Center<small>Barnersville, Liberia</small></p>
+     <div class="numbers">
+      <div class="num">
+       <code>0776 319 262</code>
+       <button class="copy" type="button" data-num="0776319262">Copy</button>
+      </div>
+      <div class="num">
+       <code>0887 348 468</code>
+       <button class="copy" type="button" data-num="0887348468">Copy</button>
+      </div>
+     </div>
+     <a class="btn wa" href="https://wa.me/231776319262" rel="noopener">Message on WhatsApp</a>
+    </section>
+   </main>
+   <footer>© 2026 Dannie Touch</footer>
+  </div>
+  <script>
+document.querySelectorAll(".copy").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    var num = btn.dataset.num;
+    function done() {
+      btn.textContent = "Copied";
+      btn.dataset.done = "true";
+      setTimeout(function () { btn.textContent = "Copy"; btn.dataset.done = "false"; }, 1800);
+    }
+    function fallback() {
+      var code = btn.parentElement.querySelector("code");
+      var r = document.createRange(); r.selectNodeContents(code);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "Selected";
+    }
+    try {
+      navigator.clipboard.writeText(num).then(done, fallback);
+    } catch (e) { fallback(); }
+  });
+});
+</script>
+ </body>
+</html>
